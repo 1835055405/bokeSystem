@@ -1,0 +1,95 @@
+@import url(./page.scss);
+*{
+  margin: 0;
+  padding: 0;
+   /* 全局继承IE怪异盒模型 */
+   box-sizing: border-box;
+   -moz-box-sizing: border-box;
+}
+body {
+font-family: "Microsoft YaHei", Arial, sans-serif, Helvetica, "黑体", "宋体";
+ font-size: 14px;
+ color: #666666;
+ overflow: hidden;
+ background-color: #F4F7FF;
+}
+li{
+  list-style-type: none;
+}
+a{
+  color: #666666;
+  text-decoration: none;
+}
+img {
+  border: none;
+}
+
+/* 重置表单样式 */
+input,
+select,
+textarea,
+button {
+  vertical-align: middle;
+}
+
+input,
+button,
+textarea,
+select,
+optgroup,
+option {
+  font-family: inherit;
+  font-size: inherit;
+  font-style: inherit;
+  font-weight: inherit;
+}
+
+button {
+  border: 0 none;
+  background-color: transparent;
+  cursor: pointer;
+}
+
+button::-moz-focus-inner,
+input[type="reset"]::-moz-focus-inner,
+input[type="button"]::-moz-focus-inner,
+input[type="submit"]::-moz-focus-inner,
+input[type="file"]>input[type="button"]::-moz-focus-inner {
+  border: none;
+  padding: 0;
+}
+
+/* 重置表格样式 */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  border-spacing: 0;
+  table-layout: fixed;
+}
+
+/*更改以谷歌为标准的-webkit-内核滚动条样式*/
+::-webkit-scrollbar {
+  width: 4px;
+  height: 4px;
+  background-color: #fff;
+}
+
+::-webkit-scrollbar-track {
+  border-radius: 10px;
+  background-color: #fff;
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  /* 可以根据设计图主色调来更改此滑块颜色 */
+  background-color: #d4dce5;
+  /* 可以根据设计图主色调来更改此阴影颜色 */
+  box-shadow: inset 0 0 6px rgba(255, 255, 255, 0.3);
+}
+
+
+
+
+
+
+

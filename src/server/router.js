@@ -1,0 +1,15 @@
+let express = require("express");
+let router = express.Router();
+let user = require("./API/user");
+let login = require("./API/login");
+let post = require("./API/post");
+let comment = require("./API/comment");
+let signUp = require("./API/signUp");
+router.get("/user", user.get);
+router.get("/post", post.get);
+router.get("/comment", comment.get);
+router.post("/login", login.post);
+router.post("/signUp", signUp.post);
+router.post("/post", post.post);
+router.post("/comment", comment.post);
+module.exports = router;

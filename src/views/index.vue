@@ -111,7 +111,6 @@ const submitPost = async (ruleFormRef: FormInstance | undefined) => {
         .then((res) => {
           isLoading.value = false;
           window.location.reload();
-          console.log(res);
         })
         .catch((err) => {
           isLoading.value = false;

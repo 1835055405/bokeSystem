@@ -1,6 +1,7 @@
 <template>
   <div class="comment">
-    <ul v-for="item in commentPost" key="item.comment_id">
+    <span class="commentTitle" v-show="commentPost.length > 0">评论</span>
+    <ul v-for="(item, index) in commentPost" :key="item.comment_id">
       <li class="content">
         <p class="userContent">
           <span class="userName">{{ item.user_name }}</span
@@ -42,7 +43,7 @@
 </template>
 <script setup lang="ts">
 import axios from "axios";
-import { onMounted, reactive, ref } from "vue";
+import { computed, onMounted, reactive, ref } from "vue";
 import { type FormInstance, type FormRules } from "element-plus";
 import moment from "moment";
 onMounted(() => {
@@ -133,6 +134,8 @@ function get() {
       commentPost.value = commentData.value.filter((item) => {
         return item.post_id == post_id;
       });
+      const slicePost = computed(() => commentPost.value.slice(0, 3));
+      commentPost.value = slicePost.value;
     })
     .catch((err) => {
       console.log("获取数据失败" + err);
@@ -141,6 +144,12 @@ function get() {
 </script>
 <style lang="scss" scoped>
 .comment {
+  margin-top: 10px;
+  .commentTitle {
+    font-size: 16px;
+    box-sizing: border-box;
+    padding: 10px;
+  }
   .content {
     box-sizing: border-box;
     padding: 10px;

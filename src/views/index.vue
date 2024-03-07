@@ -1,6 +1,6 @@
 <template>
-  <div class="index">
-    <div class="updatePost" v-if="userName">
+  <div class="index" v-if="userName">
+    <div class="updatePost">
       <div class="title">发表博客</div>
       <el-form
         ref="ruleFormRef"
@@ -109,6 +109,7 @@ const submitPost = async (ruleFormRef: FormInstance | undefined) => {
       axios
         .post("http://127.0.0.1/post", postInfo)
         .then((res) => {
+          console.log(res);
           isLoading.value = false;
           window.location.reload();
         })
@@ -125,10 +126,11 @@ const submitPost = async (ruleFormRef: FormInstance | undefined) => {
 </script>
 <style lang="scss" scoped>
 .index {
-  width: 95vw;
   position: relative;
   left: 50%;
   transform: translate(-50%, 0);
+  padding-bottom: 15px;
+  box-sizing: border-box;
   .updatePost {
     background-color: rgba($color: #ffffff, $alpha: 0.6);
     border-radius: 20px;

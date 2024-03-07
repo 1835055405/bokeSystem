@@ -48,11 +48,23 @@ const routes: any[] = [
     path: "/post",
     name: "post",
     component: () => import("@/views/post.vue"),
+    props: true,
   },
   {
     path: "/comment",
     name: "comment",
     component: () => import("@/views/comment.vue"),
+  },
+  {
+    path: "/home/:userName",
+    name: "home",
+    component: () => import("@/views/home.vue"),
+  },
+  
+  {
+    path: "/search/:info",
+    name: "search",
+    component: () => import("@/views/search.vue"),
   },
   {
     path: "/:pathMatch(.*)",

@@ -1,11 +1,6 @@
 <template>
   <div>
-    <div
-      v-infinite-scroll="load"
-      class="post infinite-list"
-      style="overflow: auto"
-    >
-      <div class="mainTitle">博客列表</div>
+    <div class="post" :style="iswindows">
       <ul class="postList" v-for="item in postData" :key="item.post_id">
         <li class="postWriter">
           <span @click="goHome(item.user_name)">{{ item.user_name }}</span>
@@ -13,26 +8,37 @@
         </li>
         <li class="title">{{ item.title }}</li>
         <li class="content">{{ item.content }}</li>
-        <li class="comment"><Comment :postId="item.post_id"></Comment></li>
       </ul>
     </div>
   </div>
 </template>
 <script setup lang="ts">
 import axios from "axios";
-import { onMounted, ref } from "vue";
+import { onMounted, onUnmounted, ref } from "vue";
 import { useRouter } from "vue-router";
 const router = useRouter();
-import Comment from "./comment.vue";
 import moment from "moment";
 onMounted(() => {
   get();
+  window.addEventListener("resize", updateStyleBasedOnWidth);
+  updateStyleBasedOnWidth();
 });
+onUnmounted(() => {
+  // 组件卸载时，移除事件监听器
+  window.removeEventListener("resize", updateStyleBasedOnWidth);
+});
+function updateStyleBasedOnWidth() {
+  const screenWidth = window.innerWidth;
+  if (screenWidth < 1024) {
+    iswindows.value = "width:100vw";
+  } else if (screenWidth >= 1024) {
+    iswindows.value = "width:70vw";
+  } else {
+    iswindows.value = "";
+  }
+}
 let postData = ref([]);
-const count = ref(0);
-const load = () => {
-  count.value += 2;
-};
+let iswindows = ref("");
 function get() {
   axios
     .get("http://127.0.0.1/post")
@@ -58,12 +64,8 @@ function goHome(userName) {
   position: relative;
   left: 50%;
   transform: translate(-50%, 0);
-  .mainTitle {
-    font-size: 16px;
-    box-sizing: border-box;
-    padding: 20px 20px 0;
-    font-weight: bold;
-  }
+  overflow-x: hidden;
+  height: 72vh;
   .postList {
     background-color: rgba($color: #ffffff, $alpha: 0.6);
     border-radius: 20px;
@@ -96,23 +98,5 @@ function goHome(userName) {
       transform: translate(-50%, 0);
     }
   }
-}
-.infinite-list {
-  height: 70vh;
-  padding: 0;
-  margin: 0;
-  list-style: none;
-}
-.infinite-list .infinite-list-item {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 50px;
-  background: var(--el-color-primary-light-9);
-  margin: 10px;
-  color: var(--el-color-primary);
-}
-.infinite-list .infinite-list-item + .list-item {
-  margin-top: 10px;
 }
 </style>

@@ -34,8 +34,6 @@ const router = useRouter();
 const route = useRoute();
 import moment from "moment";
 let postData = ref([]);
-
-console.log(route);
 const beforeSearch = ref("");
 onMounted(() => {
   beforeSearch.value =

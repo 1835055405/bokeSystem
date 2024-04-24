@@ -1,6 +1,7 @@
 let dbs = require("../db/index");
 exports.get = (req, res) => {
-  const { senderId } = req.body.params;
+  const { senderId } = req.query;
+  console.log(senderId);
   try {
     // 获取用户的好友列表
     dbs.query(

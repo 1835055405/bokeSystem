@@ -34,15 +34,26 @@ const routes: any[] = [
       ...dirRouters(),
     ],
   },
+
   {
     path: "/login",
     name: "login",
     component: () => import("@/views/login.vue"),
   },
   {
+    path: "/test",
+    name: "test",
+    component: () => import("@/views/test.vue"),
+  },
+  {
     path: "/signUp",
     name: "signUp",
     component: () => import("@/views/signUp.vue"),
+  },
+  {
+    path: "/tabBar",
+    name: "tabBar",
+    component: () => import("@/components/tabBar.vue"),
   },
   {
     path: "/post",
@@ -60,7 +71,11 @@ const routes: any[] = [
     name: "home",
     component: () => import("@/views/home.vue"),
   },
-  
+  {
+    path: "/friend/:userId",
+    name: "friend",
+    component: () => import("@/views/friend.vue"),
+  },
   {
     path: "/search/:info",
     name: "search",

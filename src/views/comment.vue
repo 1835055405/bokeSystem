@@ -1,7 +1,7 @@
 <template>
   <div class="comment">
     <span class="commentTitle" v-show="commentPost.length > 0">评论</span>
-    <ul v-for="(item, index) in commentPost" :key="item.comment_id">
+    <ul v-for="item in commentPost" :key="item.comment_id">
       <li class="content">
         <p class="userContent">
           <span class="userName">{{ item.user_name }}</span
@@ -134,7 +134,7 @@ function get() {
       commentPost.value = commentData.value.filter((item) => {
         return item.post_id == post_id;
       });
-      const slicePost = computed(() => commentPost.value.slice(0, 3));
+      const slicePost = computed(() => commentPost.value.reverse());
       commentPost.value = slicePost.value;
     })
     .catch((err) => {
